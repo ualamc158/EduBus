@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "585543947307",
+    "project_id": "edubus-8364c",
+    "storage_bucket": "edubus-8364c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:585543947307:android:900005ca3d47519980066e",
+        "android_client_info": {
+          "package_name": "com.alberto.edubus"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyazlDn4Nh8Zzgw73jR-Dz7Re38iAB9Oc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

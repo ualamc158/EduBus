@@ -7,10 +7,10 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.alberto.edubus.ui.PantallaInicio.PantallaLogin
-import com.alberto.edubus.ui.PantallaInicio.PantallaPortada
-import com.alberto.edubus.ui.PantallaInicio.PantallaRegistro
-import com.alberto.edubus.ui.PantallaRuta // Asegúrate de importar tu pantalla de rutas
+import com.alberto.edubus.ui.PantallaLogin
+import com.alberto.edubus.ui.PantallaPortada
+import com.alberto.edubus.ui.PantallaRegistro
+import com.alberto.edubus.ui.PantallaRuta
 import com.alberto.edubus.ui.theme.EduBusTheme
 
 class MainActivity : ComponentActivity() {

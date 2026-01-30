@@ -14,7 +14,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.alberto.edubus.R
 
-// --- PANTALLA 1: PORTADA (La primera que se ve) ---
 @Composable
 fun PantallaPortada(
     onNavegarLogin: () -> Unit,
@@ -25,7 +24,7 @@ fun PantallaPortada(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        // Logo (Asegúrate de haber pegado edubus_logo.png en drawable)
+
         Image(
             painter = painterResource(id = R.drawable.edubus_logo),
             contentDescription = "Logo EduBus",
@@ -34,7 +33,6 @@ fun PantallaPortada(
 
         Spacer(modifier = Modifier.height(48.dp))
 
-        // Botón Login
         Button(
             onClick = onNavegarLogin,
             modifier = Modifier.fillMaxWidth().height(50.dp),
@@ -45,7 +43,6 @@ fun PantallaPortada(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Botón Registro
         OutlinedButton(
             onClick = onNavegarRegistro,
             modifier = Modifier.fillMaxWidth().height(50.dp)
@@ -55,10 +52,9 @@ fun PantallaPortada(
     }
 }
 
-// --- PANTALLA 2: LOGIN ---
 @Composable
 fun PantallaLogin(
-    onLoginSuccess: () -> Unit, // Qué hacer cuando entra
+    onLoginSuccess: () -> Unit,
     onVolver: () -> Unit
 ) {
     var email by remember { mutableStateOf("") }
@@ -109,10 +105,8 @@ fun PantallaLogin(
     }
 }
 
-// --- PANTALLA 3: REGISTRO ---
 @Composable
 fun PantallaRegistro(onVolver: () -> Unit) {
-    // Variables para el formulario
     var nombre by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var pass by remember { mutableStateOf("") }
@@ -134,7 +128,9 @@ fun PantallaRegistro(onVolver: () -> Unit) {
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        Button(onClick = { /* Lógica de registro futura */ }, modifier = Modifier.fillMaxWidth().height(50.dp)) {
+        Button(onClick = {
+            /* Lógica de registro futura */
+        }, modifier = Modifier.fillMaxWidth().height(50.dp)) {
             Text("REGISTRARSE")
         }
 

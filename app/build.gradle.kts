@@ -2,7 +2,6 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    // EDUBUS: Plugin necesario para conectar con Firebase
     id("com.google.gms.google-services")
 }
 
@@ -13,7 +12,7 @@ android {
     defaultConfig {
         applicationId = "com.alberto.edubus"
         minSdk = 26
-        targetSdk = 34
+        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
@@ -38,13 +37,12 @@ android {
     }
     buildFeatures {
         compose = true
-        viewBinding = true // EDUBUS: Necesario para juegos antiguos que usen ViewBinding
+        viewBinding = true
     }
 }
 
 dependencies {
-
-    // --- DEPENDENCIAS ESTÁNDAR DE COMPOSE ---
+    // COMPOSE
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -53,31 +51,28 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
+    implementation("androidx.compose.material:material-icons-extended")
 
-    // --- EDUBUS: COMPATIBILIDAD HÍBRIDA (XML/LEGACY) ---
+    // XML COMPATIBILITY
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
-    // --- EDUBUS: DATOS Y JSON ---
-    // Para leer el archivo rutas_almeria.json
+    // DATA
     implementation("com.google.code.gson:gson:2.10.1")
 
-    // --- EDUBUS: FIREBASE (La Nube) ---
+    // FIREBASE (Gestionado por BOM)
     implementation(platform("com.google.firebase:firebase-bom:32.7.2"))
-    implementation("com.google.firebase:firebase-analytics")
-    implementation("com.google.firebase:firebase-auth")
-    implementation("com.google.firebase:firebase-firestore")
+    implementation("com.google.firebase:firebase-analytics-ktx")
+    implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("com.google.firebase:firebase-firestore-ktx")
 
-    // --- EDUBUS: NAVEGACIÓN ---
+    // NAVIGATION
     implementation("androidx.navigation:navigation-compose:2.7.7")
 
-    // Testing
+    // TEST
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
-    debugImplementation(libs.androidx.compose.ui.test.manifest)
 }
