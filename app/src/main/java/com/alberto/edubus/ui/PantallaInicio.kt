@@ -13,6 +13,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.alberto.edubus.R
+import com.alberto.edubus.auth.AuthManager
 
 @Composable
 fun PantallaPortada(
@@ -107,35 +108,28 @@ fun PantallaLogin(
 
 @Composable
 fun PantallaRegistro(onVolver: () -> Unit) {
-    var nombre by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var pass by remember { mutableStateOf("") }
+    var mensajeError by remember { mutableStateOf("") }
+    val authManager = remember { AuthManager() }
 
-    Column(
-        modifier = Modifier.fillMaxSize().padding(32.dp),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Text("Crear Cuenta", fontSize = 24.sp, color = MaterialTheme.colorScheme.primary)
+    Column(modifier = Modifier.fillMaxSize().padding(32.dp)) {
+        Text("Crear Cuenta", fontSize = 24.sp)
 
-        Spacer(modifier = Modifier.height(24.dp))
+        OutlinedTextField(value = email, onValueChange = { email = it }, label = { Text("Email") })
+        OutlinedTextField(value = pass, onValueChange = { pass = it }, label = { Text("Contraseña") }, visualTransformation = PasswordVisualTransformation())
 
-        OutlinedTextField(value = nombre, onValueChange = { nombre = it }, label = { Text("Nombre Usuario") }, modifier = Modifier.fillMaxWidth())
-        Spacer(modifier = Modifier.height(8.dp))
-        OutlinedTextField(value = email, onValueChange = { email = it }, label = { Text("Email") }, modifier = Modifier.fillMaxWidth())
-        Spacer(modifier = Modifier.height(8.dp))
-        OutlinedTextField(value = pass, onValueChange = { pass = it }, label = { Text("Contraseña") }, visualTransformation = PasswordVisualTransformation(), modifier = Modifier.fillMaxWidth())
-
-        Spacer(modifier = Modifier.height(24.dp))
-
-        Button(onClick = {
-            /* Lógica de registro futura */
-        }, modifier = Modifier.fillMaxWidth().height(50.dp)) {
-            Text("REGISTRARSE")
+        if (mensajeError.isNotEmpty()) {
+            Text(text = mensajeError, color = Color.Red, fontSize = 12.sp)
         }
 
-        TextButton(onClick = onVolver) {
-            Text("Cancelar")
+        Button(onClick = {
+            authManager.registrarUsuario(email, pass,
+                onSuccess = { onVolver() }, // Si sale bien, vuelve al login
+                onError = { mensajeError = it }
+            )
+        }) {
+            Text("REGISTRARSE")
         }
     }
 }
